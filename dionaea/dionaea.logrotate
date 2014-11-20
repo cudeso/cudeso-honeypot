@@ -1,0 +1,14 @@
+/var/log/dionaea/*.log {
+        notifempty
+        missingok
+        rotate 28
+        daily
+        delaycompress
+        compress
+        create 660 root root
+        dateext
+        postrotate
+                supervisorctl restart dionaea
+        endscript
+}
+
