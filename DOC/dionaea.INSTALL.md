@@ -2,6 +2,10 @@
 Fairly simple low-interaction honeypot setups
  Koen Van Impe
 
+# Dionaea
+
+------------------------------------------------------------------------------------------
+
 
 # Layout
 
@@ -55,8 +59,9 @@ See http://www.vanimpe.eu/2014/07/04/install-dionaeafr-web-frontend-dionaea-ubun
 
 # Finishing up
 
-Create a cronjob for gnuplotsql
-Set dionaea-phibo to start at boot
-Set dionaeaFR to start at boot
+* Rotate the dionaea logs (with **dionaea.logrotate**)
+* Create a cronjob for gnuplotsql
+* Set dionaea-phibo to start at boot
+* Set dionaeaFR to start at boot
 
 

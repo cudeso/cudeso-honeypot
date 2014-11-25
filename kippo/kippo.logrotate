@@ -1,0 +1,11 @@
+/var/log/kippo/*.log {
+        notifempty
+        missingok
+        rotate 28
+        daily
+        delaycompress
+        compress
+        create 660 kippo kippo
+        dateext
+}
+
