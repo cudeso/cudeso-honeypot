@@ -1,3 +1,7 @@
 *.pyc
 .DS_Store
 */.DS_Store
+
+kippo/kippo-graph/
+
+dionaea/DionaeaFR/dionaeafr_init.sh

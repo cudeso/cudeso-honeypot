@@ -4,13 +4,19 @@ Fairly simple low-interaction honeypot setups
 
 # Kippo
 
+Kippo is a medium interaction SSH honeypot designed to log brute force attack.
+
 ------------------------------------------------------------------------------------------
 
 # Install kippo
 
+Kippo uses a couple of Python libraries. 
+
 '''
 sudo apt-get install python-openssl python-pyasn1 python-twisted python-mysqldb
 '''
+
+You can download the latest source from Github.
 
 '''
 git clone https://github.com/desaster/kippo.git
@@ -18,13 +24,24 @@ git clone https://github.com/desaster/kippo.git
 
 ## mysql
 
+Kippo can store the connection attempts in a mysql database. 
+
 Create a mysql database and user for kippo. Generate the tables from **doc/sql/mysql.sql**
 
 # Configuration
 
-* Enable the mysql-setting in the config file
-* Change the (hostname) setting
-* Change the SSH-banner (ssh_version_string)
+The kippo configuration is stored in kippo.cfg.
+
+## Mysql
+
+Enable the mysql configuration by changing the section [database_mysql]. Set the database, hostname, username and password.
+
+## Kippo hostname
+
+The default hostname returned by kippo is svr03. Make sure you change the setting **hostname**.
+
+## SSH Banner
+You can define the SSH-banner returned by kippo. It's advisable you change this to make it more difficult for intruders to guess that they are in a honeypot. Do this with the **ssh_version_string** setting.
 
 ## Listen on tcp/22
 
@@ -41,6 +58,10 @@ The kippo startup script is **start.sh** . Check the logs in log/kippo.log
 
 The startup script sets logging to log/kippo.log ; it's better to change this to /var/log/kippo/kippo.log ; make sure that your kippo user has write access.
 
+## Log rotate
+
+Rotate the kippo logs (with **kippo.logrotate**) ; make sure you substitute the username 'kippo' in the logrotate script with your username
+
 # Stop kippo
 
 '''
@@ -49,6 +70,25 @@ kill `cat kippo.pid`
 
 or use the stop.sh script.
 
+# Kippo graphs
+
+Graphs make sense of the data that is stored in the database. You can use kippo-graph for this.
+
+'''
+sudo apt-get install php5-gd php5-curl
+'''
+
+'''
+git clone https://github.com/cudeso/kippo-graph.git
+'''
+
+
+## Configuration
+
+The configuration of kippo-graph is in **config.php**. Change the mysql settings to make sure kippo-graph can read its data. 
+
+Do not forget to make sure that the webserver can write to the directory **generated-graphs**.
+
+
 # Finishing up
 
-* Rotate the kippo logs (with **kippo.logrotate**) ; make sure you substitute the username 'kippo' in the logrotate script with your username
