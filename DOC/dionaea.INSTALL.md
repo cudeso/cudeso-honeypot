@@ -61,11 +61,11 @@ The configuration files are in /etc/dionaea/ and the data files are in /var/lib/
 ## Enable P0f
 
 Enable P0f by uncommenting it in the list of **ihandlers** and set the proper path for the socket in        
-'''
+```
 p0f = {
             path = "un:///var/run/p0f.sock"
         }
-'''
+```
 
 ## Logging
 
@@ -77,9 +77,9 @@ Make sure that you rotate your logs. You can use the **dionaea.logrotate** scrip
 
 ## Set dionaea to start at boot
 
-'''
+```
 update-rc.d dionaea-phibo defaults
-'''
+```
 
 # Install dionaeaFR
 

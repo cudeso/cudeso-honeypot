@@ -12,15 +12,15 @@ Kippo is a medium interaction SSH honeypot designed to log brute force attack.
 
 Kippo uses a couple of Python libraries. 
 
-'''
+```
 sudo apt-get install python-openssl python-pyasn1 python-twisted python-mysqldb
-'''
+```
 
 You can download the latest source from Github.
 
-'''
+```
 git clone https://github.com/desaster/kippo.git
-'''
+```
 
 ## mysql
 
@@ -46,9 +46,9 @@ You can define the SSH-banner returned by kippo. It's advisable you change this 
 ## Listen on tcp/22
 
 kippo listens on tcp/2222 and should not be run as root. Non-root users can not bind to tcp/22. In order to get incoming SSH connections into kippo you have to add an iptables rule. 192.168.218.141 below is the IP of the interface to which kippo is binded.
-'''
+```
 iptables  -t nat -A PREROUTING -p tcp --dport 22 -d 192.168.218.141 -j REDIRECT --to-port 2222
-'''
+```
 
 # Start kippo
 
@@ -64,9 +64,9 @@ Rotate the kippo logs (with **kippo.logrotate**) ; make sure you substitute the 
 
 # Stop kippo
 
-'''
+```
 kill `cat kippo.pid`
-'''
+```
 
 or use the stop.sh script.
 
@@ -74,13 +74,13 @@ or use the stop.sh script.
 
 Graphs make sense of the data that is stored in the database. You can use kippo-graph for this.
 
-'''
+```
 sudo apt-get install php5-gd php5-curl
-'''
+```
 
-'''
+```
 git clone https://github.com/cudeso/kippo-graph.git
-'''
+```
 
 
 ## Configuration
