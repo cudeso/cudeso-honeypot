@@ -9,7 +9,7 @@
 #
 # Koen Van Impe
 #   koen.vanimpe@cudeso.be      @cudeso         http://www.vanimpe.eu
-#   20140726
+#   20141206
 #
 
 import os
@@ -64,3 +64,4 @@ if __name__ == "__main__":
         f.close()
     else:
         print "Sqlite DB not found : %s " % SQLITE_DB
+       
