@@ -38,7 +38,8 @@ if __name__ == "__main__":
         conn = sqlite3.connect(SQLITE_DB)
         c = conn.cursor()
 
-        f_log = open(LOGFILE, 'a')
+        if LOGFILE:
+            f_log = open(LOGFILE, 'a')
         for row in c.execute("SELECT * FROM connections WHERE connection > %s ORDER BY connection ASC" % connection_start):
             timestamp = datetime.datetime.fromtimestamp(row[4]).strftime('%Y-%m-%d %H:%M:%S')
             connection_type = row[1]
@@ -51,11 +52,12 @@ if __name__ == "__main__":
             hostname = row[10]
             connection_id = row[0]
             if LOGFILE:
-                f_log.write("\n%s : %-10s \t %-10s \t %s \t %s \t %s \t %s \t %s \t %s " % (timestamp, connection_type, connection_protocol, protocol, src_ip, src_port, dst_ip, dst_port, hostname))
+                f_log.write("%s : %-10s \t %-10s \t %s \t %s \t %s \t %s \t %s \t %s\n" % (timestamp, connection_type, connection_protocol, protocol, src_ip, src_port, dst_ip, dst_port, hostname))
             else:
                 print "%s : %-10s \t %-10s \t %s \t %s \t %s \t %s \t %s \t %s " % (timestamp, connection_type, connection_protocol, protocol, src_ip, src_port, dst_ip, dst_port, hostname)
         conn.close()
-        f_log.close()
+        if LOGFILE:
+            f_log.close()
 
         if not(connection_id and connection_id > 0):
             connection_id = connection_start
@@ -64,4 +66,3 @@ if __name__ == "__main__":
         f.close()
     else:
         print "Sqlite DB not found : %s " % SQLITE_DB
-       

@@ -16,9 +16,11 @@ From http://glastopf.github.io/conpot/installation/ubuntu.html
 sudo apt-get install libsmi2ldbl snmp-mibs-downloader python-dev libevent-dev libxslt1-dev libxml2-dev
 ```
 
+If you get an error **E: Package 'snmp-mibs-downloader' has no installation candidate** then you will have to enable multiverse. Do this with **sudo vi /etc/apt/sources.list ; sudo apt-get update** 
+
 ```
 cd /opt
-git clone git@github.com:glastopf/conpot.git
+git clone https://github.com/glastopf/conpot.git
 cd conpot
 python setup.py install
 ```
@@ -27,7 +29,7 @@ This will install all the necessary packages and install the conpot python packa
 
 # Starting conpot
 
-Conpot needs root privileges (because some services bind to ports below 1024). I drops privileges to nobody/nogroup once started.
+Conpot needs root privileges (because some services bind to ports below 1024). It drops privileges to nobody/nogroup once started.
 You can start the honeypot with 
 
 ```
@@ -105,6 +107,7 @@ urls = ["http://www.telize.com/ip", "http://queryip.net/ip/", "http://ifconfig.m
 
 ## Database configuration
 
+### mysql
 Out of the box contop will log to a flat file. If you prefer mysql then first create a database, set proper permissions and change the setting in the config file.
 
 ```
@@ -131,7 +134,10 @@ socket = tcp        ; tcp (sends to host:port), dev (sends to mysql device/socke
 
 Do not leave out any of the settings. If you are not using sockets you might by tempted to leave out 'device'. This will prevent conpot from starting.
 
+### sqlite
+
 Similarily to mysql, you can also configure sqlite in the configuration file.
+Conpot will use the path **logs/conpot.db** for storing the sqlite database (see conpot/core/loggers/sqlite_log.py)
 
 ## Other logging features
 

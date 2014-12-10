@@ -47,6 +47,33 @@
           "type": "lucene",
           "enable": true,
           "query": "connection_protocol:\"smbd\""
+        },
+        "5": {
+          "id": 5,
+          "color": "#1F78C1",
+          "alias": "",
+          "pin": false,
+          "type": "lucene",
+          "enable": true,
+          "query": "honeypot:\"glastopf\""
+        },
+        "6": {
+          "id": 6,
+          "color": "#BA43A9",
+          "alias": "",
+          "pin": false,
+          "type": "lucene",
+          "enable": true,
+          "query": "honeypot:\"conpot\""
+        },
+        "7": {
+          "id": 7,
+          "color": "#705DA0",
+          "alias": "",
+          "pin": false,
+          "type": "lucene",
+          "enable": true,
+          "query": "honeypot:\"dionaea\""
         }
       },
       "ids": [
@@ -54,7 +81,10 @@
         1,
         2,
         3,
-        4
+        4,
+        5,
+        6,
+        7
       ]
     },
     "filter": {
@@ -84,7 +114,7 @@
       "collapsable": true,
       "panels": [
         {
-          "span": 6,
+          "span": 7,
           "editable": true,
           "type": "histogram",
           "loadingEditor": false,
@@ -106,7 +136,10 @@
               1,
               2,
               3,
-              4
+              4,
+              5,
+              6,
+              7
             ]
           },
           "annotate": {
@@ -189,7 +222,10 @@
               1,
               2,
               3,
-              4
+              4,
+              5,
+              6,
+              7
             ]
           },
           "tmode": "terms",
@@ -199,7 +235,7 @@
         },
         {
           "error": false,
-          "span": 3,
+          "span": 2,
           "editable": true,
           "type": "terms",
           "loadingEditor": false,
@@ -226,7 +262,10 @@
               1,
               2,
               3,
-              4
+              4,
+              5,
+              6,
+              7
             ]
           },
           "tmode": "terms",
@@ -253,7 +292,10 @@
           "queries": {
             "mode": "selected",
             "ids": [
-              0
+              0,
+              5,
+              6,
+              7
             ]
           },
           "annotate": {
@@ -289,7 +331,7 @@
           "points": false,
           "pointradius": 5,
           "bars": true,
-          "stack": false,
+          "stack": true,
           "spyable": true,
           "zoomlinks": true,
           "options": true,
@@ -302,10 +344,108 @@
           "zerofill": true,
           "derivative": false,
           "tooltip": {
-            "value_type": "cumulative",
+            "value_type": "individual",
             "query_as_alias": true
           },
           "title": "Honeypot Events"
+        }
+      ],
+      "notice": false
+    },
+    {
+      "title": "Overview Trends",
+      "height": "150px",
+      "editable": true,
+      "collapse": false,
+      "collapsable": true,
+      "panels": [
+        {
+          "span": 3,
+          "editable": true,
+          "type": "sparklines",
+          "loadingEditor": false,
+          "mode": "count",
+          "time_field": "@timestamp",
+          "value_field": null,
+          "interval": "12h",
+          "spyable": false,
+          "queries": {
+            "mode": "selected",
+            "ids": [
+              0,
+              5,
+              6,
+              7
+            ]
+          },
+          "title": "Honeypots"
+        },
+        {
+          "span": 3,
+          "editable": true,
+          "type": "trends",
+          "loadingEditor": false,
+          "ago": "1d",
+          "arrangement": "horizontal",
+          "reverse": false,
+          "spyable": true,
+          "queries": {
+            "mode": "selected",
+            "ids": [
+              0,
+              5,
+              6,
+              7
+            ]
+          },
+          "style": {
+            "font-size": "12pt"
+          },
+          "title": "Honeypot Trends"
+        },
+        {
+          "span": 3,
+          "editable": true,
+          "type": "sparklines",
+          "loadingEditor": false,
+          "mode": "count",
+          "time_field": "@timestamp",
+          "value_field": null,
+          "interval": "12h",
+          "spyable": false,
+          "queries": {
+            "mode": "selected",
+            "ids": [
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          "title": "Traffic"
+        },
+        {
+          "span": 3,
+          "editable": true,
+          "type": "trends",
+          "loadingEditor": false,
+          "ago": "1d",
+          "arrangement": "horizontal",
+          "reverse": false,
+          "spyable": true,
+          "queries": {
+            "mode": "selected",
+            "ids": [
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          "style": {
+            "font-size": "12pt"
+          },
+          "title": "Traffic Trends"
         }
       ],
       "notice": false
@@ -346,7 +486,10 @@
               1,
               2,
               3,
-              4
+              4,
+              5,
+              6,
+              7
             ]
           },
           "tmode": "terms",
@@ -383,7 +526,10 @@
               1,
               2,
               3,
-              4
+              4,
+              5,
+              6,
+              7
             ]
           },
           "tmode": "terms",
@@ -420,7 +566,10 @@
               1,
               2,
               3,
-              4
+              4,
+              5,
+              6,
+              7
             ]
           },
           "tmode": "terms",
@@ -435,7 +584,7 @@
       "title": "Dionaea Connections",
       "height": "200px",
       "editable": true,
-      "collapse": false,
+      "collapse": true,
       "collapsable": true,
       "panels": [
         {
@@ -447,7 +596,7 @@
           "field": "connection_type",
           "exclude": [],
           "missing": false,
-          "other": false,
+          "other": true,
           "size": 30,
           "order": "count",
           "style": {
@@ -467,13 +616,15 @@
               1,
               2,
               3,
-              4
+              4,
+              5,
+              6
             ]
           },
           "tmode": "terms",
           "tstat": "total",
           "valuefield": "",
-          "title": "Connection Type"
+          "title": "Dionaea Connection Type"
         },
         {
           "error": false,
@@ -484,13 +635,13 @@
           "field": "connection_type",
           "exclude": [],
           "missing": false,
-          "other": false,
+          "other": true,
           "size": 10,
           "order": "count",
           "style": {
             "font-size": "10pt"
           },
-          "donut": false,
+          "donut": true,
           "tilt": false,
           "labels": true,
           "arrangement": "horizontal",
@@ -504,13 +655,15 @@
               1,
               2,
               3,
-              4
+              4,
+              5,
+              6
             ]
           },
           "tmode": "terms",
           "tstat": "total",
           "valuefield": "",
-          "title": "Connection Type"
+          "title": "Dionaea Connection Type"
         },
         {
           "error": false,
@@ -521,7 +674,7 @@
           "field": "connection_protocol",
           "exclude": [],
           "missing": false,
-          "other": false,
+          "other": true,
           "size": 30,
           "order": "count",
           "style": {
@@ -541,13 +694,15 @@
               1,
               2,
               3,
-              4
+              4,
+              5,
+              6
             ]
           },
           "tmode": "terms",
           "tstat": "total",
           "valuefield": "",
-          "title": "Connection Protocol"
+          "title": "Dionaea Connection Protocol"
         },
         {
           "error": false,
@@ -558,13 +713,13 @@
           "field": "connection_protocol",
           "exclude": [],
           "missing": false,
-          "other": false,
+          "other": true,
           "size": 30,
           "order": "count",
           "style": {
             "font-size": "10pt"
           },
-          "donut": false,
+          "donut": true,
           "tilt": false,
           "labels": true,
           "arrangement": "horizontal",
@@ -578,13 +733,15 @@
               1,
               2,
               3,
-              4
+              4,
+              5,
+              6
             ]
           },
           "tmode": "terms",
           "tstat": "total",
           "valuefield": "",
-          "title": "Connection Protocol"
+          "title": "Dionaea Connection Protocol"
         }
       ],
       "notice": false
@@ -593,7 +750,7 @@
       "title": "Dionaea Connections Graph",
       "height": "150px",
       "editable": true,
-      "collapse": false,
+      "collapse": true,
       "collapsable": true,
       "panels": [
         {
@@ -668,7 +825,7 @@
             "value_type": "cumulative",
             "query_as_alias": true
           },
-          "title": "SQL"
+          "title": "Dionaea SQL"
         },
         {
           "span": 4,
@@ -741,7 +898,7 @@
             "value_type": "cumulative",
             "query_as_alias": true
           },
-          "title": "HTTPD"
+          "title": "Dionaea HTTP(s)"
         },
         {
           "span": 4,
@@ -814,7 +971,83 @@
             "value_type": "cumulative",
             "query_as_alias": true
           },
-          "title": "SMBD"
+          "title": "Dionaea SMB"
+        }
+      ],
+      "notice": false
+    },
+    {
+      "title": "Glastopf / Conpot",
+      "height": "200px",
+      "editable": true,
+      "collapse": true,
+      "collapsable": true,
+      "panels": [
+        {
+          "error": false,
+          "span": 6,
+          "editable": true,
+          "type": "terms",
+          "loadingEditor": false,
+          "field": "request_url",
+          "exclude": [],
+          "missing": true,
+          "other": true,
+          "size": 10,
+          "order": "count",
+          "style": {
+            "font-size": "10pt"
+          },
+          "donut": false,
+          "tilt": false,
+          "labels": true,
+          "arrangement": "horizontal",
+          "chart": "table",
+          "counter_pos": "above",
+          "spyable": true,
+          "queries": {
+            "mode": "selected",
+            "ids": [
+              5
+            ]
+          },
+          "tmode": "terms",
+          "tstat": "total",
+          "valuefield": "",
+          "title": "Glastopf request_url"
+        },
+        {
+          "error": false,
+          "span": 6,
+          "editable": true,
+          "type": "terms",
+          "loadingEditor": false,
+          "field": "request_protocol",
+          "exclude": [],
+          "missing": true,
+          "other": true,
+          "size": 10,
+          "order": "count",
+          "style": {
+            "font-size": "10pt"
+          },
+          "donut": false,
+          "tilt": false,
+          "labels": true,
+          "arrangement": "horizontal",
+          "chart": "table",
+          "counter_pos": "above",
+          "spyable": true,
+          "queries": {
+            "mode": "selected",
+            "ids": [
+              6
+            ]
+          },
+          "tmode": "terms",
+          "tstat": "total",
+          "valuefield": "",
+          "title": "Conpot request_protocol"
         }
       ],
       "notice": false
@@ -823,7 +1056,7 @@
       "title": "Maps",
       "height": "450px",
       "editable": true,
-      "collapse": false,
+      "collapse": true,
       "collapsable": true,
       "panels": [
         {
@@ -843,7 +1076,9 @@
               1,
               2,
               3,
-              4
+              4,
+              5,
+              6
             ]
           },
           "title": "map"
@@ -877,13 +1112,102 @@
               1,
               2,
               3,
-              4
+              4,
+              5,
+              6
             ]
           },
           "tmode": "terms",
           "tstat": "total",
           "valuefield": "",
           "title": "Top Countries"
+        },
+        {
+          "error": false,
+          "span": 4,
+          "editable": true,
+          "type": "map",
+          "loadingEditor": false,
+          "map": "world",
+          "colors": [
+            "#A0E2E2",
+            "#265656"
+          ],
+          "size": 250,
+          "exclude": [],
+          "spyable": true,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ]
+          },
+          "field": "geoip.country_code2",
+          "title": "World"
+        },
+        {
+          "error": false,
+          "span": 4,
+          "editable": true,
+          "type": "map",
+          "loadingEditor": false,
+          "map": "usa",
+          "colors": [
+            "#A0E2E2",
+            "#265656"
+          ],
+          "size": 250,
+          "exclude": [],
+          "spyable": true,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ]
+          },
+          "field": "geoip.country_code2",
+          "title": "US"
+        },
+        {
+          "error": false,
+          "span": 4,
+          "editable": true,
+          "type": "map",
+          "loadingEditor": false,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#265656"
+          ],
+          "size": 250,
+          "exclude": [],
+          "spyable": true,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ]
+          },
+          "field": "geoip.country_code2",
+          "title": "Europe"
         }
       ],
       "notice": false
@@ -892,7 +1216,7 @@
       "title": "Network",
       "height": "200px",
       "editable": true,
-      "collapse": false,
+      "collapse": true,
       "collapsable": true,
       "panels": [
         {
@@ -923,7 +1247,9 @@
               1,
               2,
               3,
-              4
+              4,
+              5,
+              6
             ]
           },
           "tmode": "terms",
@@ -958,7 +1284,9 @@
               1,
               2,
               3,
-              4
+              4,
+              5,
+              6
             ]
           },
           "tmode": "terms",
@@ -993,7 +1321,9 @@
               1,
               2,
               3,
-              4
+              4,
+              5,
+              6
             ]
           },
           "tmode": "terms",
@@ -1028,7 +1358,9 @@
               1,
               2,
               3,
-              4
+              4,
+              5,
+              6
             ]
           },
           "tmode": "terms",
@@ -1042,7 +1374,7 @@
       "title": "Events",
       "height": "650px",
       "editable": true,
-      "collapse": false,
+      "collapse": true,
       "collapsable": true,
       "panels": [
         {
@@ -1077,7 +1409,9 @@
               1,
               2,
               3,
-              4
+              4,
+              5,
+              6
             ]
           },
           "field_list": true,
@@ -1125,16 +1459,16 @@
       "query": "*",
       "pinned": true,
       "history": [
+        "honeypot:\"dionaea\"",
+        "honeypot:\"conpot\"",
+        "honeypot:\"glastopf\"",
         "connection_protocol:\"smbd\"",
         "connection_protocol:\"httpd\"",
         "connection_protocol:\"mssqld\"",
         "connection_protocol:\"mysqld\"",
         "basetype:\"honeypot\"",
         "connection_protocol:\"pcap\"",
-        "*",
-        "connection_protocol:\"mysql\"",
-        "@connection_protocol:\"httpd\"",
-        "@connection_protocol:httpd"
+        "*"
       ],
       "remember": 10,
       "enable": true
