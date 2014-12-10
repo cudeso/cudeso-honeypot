@@ -82,6 +82,10 @@ sudo glastopf-runner
 
 This will create a config file **glastopf.cfg**
 
+## HP-Feeds
+
+By default glastopf has hpfeeds enabled. You can disable it in the [hpfeed] section of glastopf.cfg
+
 ## Socket error
 
 If glastopf fails to start 
