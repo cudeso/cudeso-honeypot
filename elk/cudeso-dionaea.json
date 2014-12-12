@@ -6,8 +6,8 @@
         "0": {
           "id": 0,
           "color": "#7EB26D",
-          "alias": "",
-          "pin": false,
+          "alias": "All honeypots",
+          "pin": true,
           "type": "lucene",
           "enable": true,
           "query": "basetype:\"honeypot\""
@@ -50,30 +50,66 @@
         },
         "5": {
           "id": 5,
-          "color": "#1F78C1",
-          "alias": "",
-          "pin": false,
+          "color": "#511749",
+          "alias": "Glastopf",
+          "pin": true,
           "type": "lucene",
           "enable": true,
-          "query": "honeypot:\"glastopf\""
+          "query": "type:\"glastopf\""
         },
         "6": {
           "id": 6,
-          "color": "#BA43A9",
-          "alias": "",
-          "pin": false,
+          "color": "#967302",
+          "alias": "Conpot",
+          "pin": true,
           "type": "lucene",
           "enable": true,
-          "query": "honeypot:\"conpot\""
+          "query": "type:\"conpot\""
         },
         "7": {
           "id": 7,
-          "color": "#705DA0",
+          "color": "#F29191",
+          "alias": "Dionaea",
+          "pin": true,
+          "type": "lucene",
+          "enable": true,
+          "query": "type:\"dionaea\""
+        },
+        "8": {
+          "id": 8,
+          "color": "#99440A",
+          "alias": "Kippo",
+          "pin": true,
+          "type": "lucene",
+          "enable": true,
+          "query": "type:\"kippo\""
+        },
+        "9": {
+          "id": 9,
+          "color": "#CCA300",
           "alias": "",
           "pin": false,
           "type": "lucene",
           "enable": true,
-          "query": "honeypot:\"dionaea\""
+          "query": "kippo-type:\"connection\""
+        },
+        "10": {
+          "id": 10,
+          "color": "#447EBC",
+          "alias": "",
+          "pin": false,
+          "type": "lucene",
+          "enable": true,
+          "query": "kippo-type:\"credentials\""
+        },
+        "11": {
+          "id": 11,
+          "color": "#C15C17",
+          "alias": "",
+          "pin": false,
+          "type": "lucene",
+          "enable": true,
+          "query": "kippo-type:\"authentication-method\""
         }
       },
       "ids": [
@@ -82,9 +118,13 @@
         2,
         3,
         4,
-        5,
         6,
-        7
+        7,
+        8,
+        9,
+        10,
+        11,
+        5
       ]
     },
     "filter": {
@@ -130,16 +170,13 @@
             "min": 0
           },
           "queries": {
-            "mode": "all",
+            "mode": "pinned",
             "ids": [
               0,
-              1,
-              2,
-              3,
-              4,
               5,
               6,
-              7
+              7,
+              8
             ]
           },
           "annotate": {
@@ -172,7 +209,7 @@
           "lines": true,
           "fill": 3,
           "linewidth": 3,
-          "points": true,
+          "points": false,
           "pointradius": 5,
           "bars": false,
           "stack": false,
@@ -195,14 +232,51 @@
         },
         {
           "error": false,
+          "span": 2,
+          "editable": true,
+          "type": "terms",
+          "loadingEditor": false,
+          "field": "type",
+          "exclude": [],
+          "missing": false,
+          "other": false,
+          "size": 10,
+          "order": "count",
+          "style": {
+            "font-size": "10pt"
+          },
+          "donut": false,
+          "tilt": false,
+          "labels": true,
+          "arrangement": "horizontal",
+          "chart": "table",
+          "counter_pos": "above",
+          "spyable": true,
+          "queries": {
+            "mode": "pinned",
+            "ids": [
+              0,
+              5,
+              6,
+              7,
+              8
+            ]
+          },
+          "tmode": "terms",
+          "tstat": "total",
+          "valuefield": "",
+          "title": "Honeypot types"
+        },
+        {
+          "error": false,
           "span": 3,
           "editable": true,
           "type": "terms",
           "loadingEditor": false,
           "field": "type",
           "exclude": [],
-          "missing": true,
-          "other": true,
+          "missing": false,
+          "other": false,
           "size": 10,
           "order": "count",
           "style": {
@@ -216,62 +290,19 @@
           "counter_pos": "none",
           "spyable": true,
           "queries": {
-            "mode": "all",
+            "mode": "pinned",
             "ids": [
               0,
-              1,
-              2,
-              3,
-              4,
               5,
               6,
-              7
+              7,
+              8
             ]
           },
           "tmode": "terms",
           "tstat": "total",
           "valuefield": "",
           "title": "Honeypot types"
-        },
-        {
-          "error": false,
-          "span": 2,
-          "editable": true,
-          "type": "terms",
-          "loadingEditor": false,
-          "field": "geoip.country_code2",
-          "exclude": [],
-          "missing": false,
-          "other": false,
-          "size": 7,
-          "order": "count",
-          "style": {
-            "font-size": "10pt"
-          },
-          "donut": false,
-          "tilt": false,
-          "labels": true,
-          "arrangement": "horizontal",
-          "chart": "table",
-          "counter_pos": "above",
-          "spyable": true,
-          "queries": {
-            "mode": "all",
-            "ids": [
-              0,
-              1,
-              2,
-              3,
-              4,
-              5,
-              6,
-              7
-            ]
-          },
-          "tmode": "terms",
-          "tstat": "total",
-          "valuefield": "",
-          "title": "Top Countries"
         },
         {
           "span": 12,
@@ -290,12 +321,13 @@
             "min": 0
           },
           "queries": {
-            "mode": "selected",
+            "mode": "pinned",
             "ids": [
               0,
               5,
               6,
-              7
+              7,
+              8
             ]
           },
           "annotate": {
@@ -362,67 +394,221 @@
         {
           "span": 3,
           "editable": true,
-          "type": "sparklines",
+          "type": "histogram",
           "loadingEditor": false,
           "mode": "count",
           "time_field": "@timestamp",
           "value_field": null,
-          "interval": "12h",
-          "spyable": false,
+          "x-axis": true,
+          "y-axis": true,
+          "scale": 1,
+          "y_format": "none",
+          "grid": {
+            "max": null,
+            "min": 0
+          },
           "queries": {
             "mode": "selected",
             "ids": [
-              0,
-              5,
-              6,
-              7
+              0
             ]
+          },
+          "annotate": {
+            "enable": false,
+            "query": "*",
+            "size": 20,
+            "field": "_type",
+            "sort": [
+              "_score",
+              "desc"
+            ]
+          },
+          "auto_int": true,
+          "resolution": 100,
+          "interval": "1h",
+          "intervals": [
+            "auto",
+            "1s",
+            "1m",
+            "5m",
+            "10m",
+            "30m",
+            "1h",
+            "3h",
+            "12h",
+            "1d",
+            "1w",
+            "1y"
+          ],
+          "lines": true,
+          "fill": 0,
+          "linewidth": 3,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "spyable": true,
+          "zoomlinks": true,
+          "options": true,
+          "legend": true,
+          "show_query": true,
+          "interactive": true,
+          "legend_counts": true,
+          "timezone": "browser",
+          "percentage": false,
+          "zerofill": true,
+          "derivative": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "query_as_alias": true
           },
           "title": "Honeypots"
         },
         {
           "span": 3,
           "editable": true,
-          "type": "trends",
-          "loadingEditor": false,
-          "ago": "1d",
-          "arrangement": "horizontal",
-          "reverse": false,
-          "spyable": true,
-          "queries": {
-            "mode": "selected",
-            "ids": [
-              0,
-              5,
-              6,
-              7
-            ]
-          },
-          "style": {
-            "font-size": "12pt"
-          },
-          "title": "Honeypot Trends"
-        },
-        {
-          "span": 3,
-          "editable": true,
-          "type": "sparklines",
+          "type": "histogram",
           "loadingEditor": false,
           "mode": "count",
           "time_field": "@timestamp",
           "value_field": null,
-          "interval": "12h",
-          "spyable": false,
+          "x-axis": true,
+          "y-axis": true,
+          "scale": 1,
+          "y_format": "none",
+          "grid": {
+            "max": null,
+            "min": 0
+          },
           "queries": {
             "mode": "selected",
             "ids": [
-              1,
-              2,
-              3,
-              4
+              7
             ]
           },
-          "title": "Traffic"
+          "annotate": {
+            "enable": false,
+            "query": "*",
+            "size": 20,
+            "field": "_type",
+            "sort": [
+              "_score",
+              "desc"
+            ]
+          },
+          "auto_int": false,
+          "resolution": 100,
+          "interval": "1h",
+          "intervals": [
+            "auto",
+            "1s",
+            "1m",
+            "5m",
+            "10m",
+            "30m",
+            "1h",
+            "3h",
+            "12h",
+            "1d",
+            "1w",
+            "1y"
+          ],
+          "lines": true,
+          "fill": 0,
+          "linewidth": 3,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "spyable": true,
+          "zoomlinks": true,
+          "options": true,
+          "legend": true,
+          "show_query": true,
+          "interactive": true,
+          "legend_counts": true,
+          "timezone": "browser",
+          "percentage": false,
+          "zerofill": true,
+          "derivative": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "query_as_alias": true
+          },
+          "title": "Dionaea"
+        },
+        {
+          "span": 3,
+          "editable": true,
+          "type": "histogram",
+          "loadingEditor": false,
+          "mode": "count",
+          "time_field": "@timestamp",
+          "value_field": null,
+          "x-axis": true,
+          "y-axis": true,
+          "scale": 1,
+          "y_format": "none",
+          "grid": {
+            "max": null,
+            "min": 0
+          },
+          "queries": {
+            "mode": "selected",
+            "ids": [
+              8
+            ]
+          },
+          "annotate": {
+            "enable": false,
+            "query": "*",
+            "size": 20,
+            "field": "_type",
+            "sort": [
+              "_score",
+              "desc"
+            ]
+          },
+          "auto_int": true,
+          "resolution": 100,
+          "interval": "1h",
+          "intervals": [
+            "auto",
+            "1s",
+            "1m",
+            "5m",
+            "10m",
+            "30m",
+            "1h",
+            "3h",
+            "12h",
+            "1d",
+            "1w",
+            "1y"
+          ],
+          "lines": true,
+          "fill": 0,
+          "linewidth": 3,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "spyable": true,
+          "zoomlinks": true,
+          "options": true,
+          "legend": true,
+          "show_query": true,
+          "interactive": true,
+          "legend_counts": true,
+          "timezone": "browser",
+          "percentage": false,
+          "zerofill": true,
+          "derivative": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "query_as_alias": true
+          },
+          "title": "Kippo"
         },
         {
           "span": 3,
@@ -434,18 +620,19 @@
           "reverse": false,
           "spyable": true,
           "queries": {
-            "mode": "selected",
+            "mode": "pinned",
             "ids": [
-              1,
-              2,
-              3,
-              4
+              0,
+              5,
+              6,
+              7,
+              8
             ]
           },
           "style": {
             "font-size": "12pt"
           },
-          "title": "Traffic Trends"
+          "title": "Honeypot Trends (1d)"
         }
       ],
       "notice": false
@@ -489,7 +676,11 @@
               4,
               5,
               6,
-              7
+              7,
+              8,
+              9,
+              10,
+              11
             ]
           },
           "tmode": "terms",
@@ -529,7 +720,11 @@
               4,
               5,
               6,
-              7
+              7,
+              8,
+              9,
+              10,
+              11
             ]
           },
           "tmode": "terms",
@@ -569,7 +764,11 @@
               4,
               5,
               6,
-              7
+              7,
+              8,
+              9,
+              10,
+              11
             ]
           },
           "tmode": "terms",
@@ -581,10 +780,427 @@
       "notice": false
     },
     {
+      "title": "Maps",
+      "height": "350px",
+      "editable": true,
+      "collapse": false,
+      "collapsable": true,
+      "panels": [
+        {
+          "error": false,
+          "span": 7,
+          "editable": true,
+          "type": "bettermap",
+          "loadingEditor": false,
+          "field": "geoip.coordinates",
+          "size": 100000,
+          "spyable": true,
+          "tooltip": "geoip.ip",
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11
+            ]
+          },
+          "title": "Map (limited to 100000 points)"
+        },
+        {
+          "error": false,
+          "span": 3,
+          "editable": true,
+          "type": "terms",
+          "loadingEditor": false,
+          "field": "geoip.country_code2",
+          "exclude": [],
+          "missing": true,
+          "other": true,
+          "size": 13,
+          "order": "count",
+          "style": {
+            "font-size": "10pt"
+          },
+          "donut": false,
+          "tilt": false,
+          "labels": true,
+          "arrangement": "horizontal",
+          "chart": "table",
+          "counter_pos": "above",
+          "spyable": true,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11
+            ]
+          },
+          "tmode": "terms",
+          "tstat": "total",
+          "valuefield": "",
+          "title": "Top Countries"
+        },
+        {
+          "error": false,
+          "span": 2,
+          "editable": true,
+          "type": "terms",
+          "loadingEditor": false,
+          "field": "geoip.country_code2",
+          "exclude": [],
+          "missing": false,
+          "other": true,
+          "size": 8,
+          "order": "count",
+          "style": {
+            "font-size": "10pt"
+          },
+          "donut": true,
+          "tilt": false,
+          "labels": true,
+          "arrangement": "horizontal",
+          "chart": "pie",
+          "counter_pos": "above",
+          "spyable": true,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11
+            ]
+          },
+          "tmode": "terms",
+          "tstat": "total",
+          "valuefield": "",
+          "title": "Top Countries"
+        }
+      ],
+      "notice": false
+    },
+    {
+      "title": "Maps 2",
+      "height": "150px",
+      "editable": true,
+      "collapse": false,
+      "collapsable": true,
+      "panels": [
+        {
+          "error": false,
+          "span": 4,
+          "editable": true,
+          "type": "map",
+          "loadingEditor": false,
+          "map": "world",
+          "colors": [
+            "#A0E2E2",
+            "#265656"
+          ],
+          "size": 250,
+          "exclude": [],
+          "spyable": true,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11
+            ]
+          },
+          "field": "geoip.country_code2",
+          "title": "World"
+        },
+        {
+          "error": false,
+          "span": 4,
+          "editable": true,
+          "type": "map",
+          "loadingEditor": false,
+          "map": "europe",
+          "colors": [
+            "#A0E2E2",
+            "#265656"
+          ],
+          "size": 250,
+          "exclude": [],
+          "spyable": true,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11
+            ]
+          },
+          "field": "geoip.country_code2",
+          "title": "Europe"
+        },
+        {
+          "error": false,
+          "span": 4,
+          "editable": true,
+          "type": "map",
+          "loadingEditor": false,
+          "map": "usa",
+          "colors": [
+            "#A0E2E2",
+            "#265656"
+          ],
+          "size": 250,
+          "exclude": [],
+          "spyable": true,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11
+            ]
+          },
+          "field": "geoip.country_code2",
+          "title": "US"
+        }
+      ],
+      "notice": false
+    },
+    {
+      "title": "Network",
+      "height": "200px",
+      "editable": true,
+      "collapse": false,
+      "collapsable": true,
+      "panels": [
+        {
+          "height": "200px",
+          "chart": "pie",
+          "field": "dstport",
+          "span": 4,
+          "type": "terms",
+          "title": "Destination Ports",
+          "exclude": [],
+          "missing": false,
+          "other": false,
+          "size": 10,
+          "order": "count",
+          "style": {
+            "font-size": "10pt"
+          },
+          "donut": false,
+          "tilt": false,
+          "labels": true,
+          "arrangement": "horizontal",
+          "counter_pos": "above",
+          "spyable": true,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11
+            ]
+          },
+          "tmode": "terms",
+          "tstat": "total",
+          "valuefield": ""
+        },
+        {
+          "height": "200px",
+          "chart": "table",
+          "field": "dstport",
+          "span": 3,
+          "type": "terms",
+          "title": "Destination Ports",
+          "exclude": [],
+          "missing": false,
+          "other": false,
+          "size": 10,
+          "order": "count",
+          "style": {
+            "font-size": "10pt"
+          },
+          "donut": false,
+          "tilt": false,
+          "labels": true,
+          "arrangement": "horizontal",
+          "counter_pos": "above",
+          "spyable": true,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11
+            ]
+          },
+          "tmode": "terms",
+          "tstat": "total",
+          "valuefield": ""
+        },
+        {
+          "height": "200px",
+          "chart": "table",
+          "field": "protocol",
+          "span": 2,
+          "type": "terms",
+          "title": "Protocol",
+          "exclude": [],
+          "missing": false,
+          "other": false,
+          "size": 10,
+          "order": "count",
+          "style": {
+            "font-size": "10pt"
+          },
+          "donut": false,
+          "tilt": false,
+          "labels": true,
+          "arrangement": "horizontal",
+          "counter_pos": "above",
+          "spyable": true,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11
+            ]
+          },
+          "tmode": "terms",
+          "tstat": "total",
+          "valuefield": ""
+        },
+        {
+          "height": "200px",
+          "chart": "table",
+          "field": "srcport",
+          "span": 3,
+          "type": "terms",
+          "title": "Source Ports",
+          "exclude": [],
+          "missing": false,
+          "other": false,
+          "size": 10,
+          "order": "count",
+          "style": {
+            "font-size": "10pt"
+          },
+          "donut": false,
+          "tilt": false,
+          "labels": true,
+          "arrangement": "horizontal",
+          "counter_pos": "above",
+          "spyable": true,
+          "queries": {
+            "mode": "all",
+            "ids": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11
+            ]
+          },
+          "tmode": "terms",
+          "tstat": "total",
+          "valuefield": ""
+        }
+      ],
+      "notice": false
+    },
+    {
       "title": "Dionaea Connections",
       "height": "200px",
       "editable": true,
-      "collapse": true,
+      "collapse": false,
       "collapsable": true,
       "panels": [
         {
@@ -610,15 +1226,9 @@
           "counter_pos": "above",
           "spyable": true,
           "queries": {
-            "mode": "all",
+            "mode": "selected",
             "ids": [
-              0,
-              1,
-              2,
-              3,
-              4,
-              5,
-              6
+              7
             ]
           },
           "tmode": "terms",
@@ -649,15 +1259,9 @@
           "counter_pos": "above",
           "spyable": true,
           "queries": {
-            "mode": "all",
+            "mode": "selected",
             "ids": [
-              0,
-              1,
-              2,
-              3,
-              4,
-              5,
-              6
+              7
             ]
           },
           "tmode": "terms",
@@ -688,15 +1292,9 @@
           "counter_pos": "above",
           "spyable": true,
           "queries": {
-            "mode": "all",
+            "mode": "selected",
             "ids": [
-              0,
-              1,
-              2,
-              3,
-              4,
-              5,
-              6
+              7
             ]
           },
           "tmode": "terms",
@@ -727,15 +1325,9 @@
           "counter_pos": "above",
           "spyable": true,
           "queries": {
-            "mode": "all",
+            "mode": "selected",
             "ids": [
-              0,
-              1,
-              2,
-              3,
-              4,
-              5,
-              6
+              7
             ]
           },
           "tmode": "terms",
@@ -750,7 +1342,7 @@
       "title": "Dionaea Connections Graph",
       "height": "150px",
       "editable": true,
-      "collapse": true,
+      "collapse": false,
       "collapsable": true,
       "panels": [
         {
@@ -806,7 +1398,7 @@
           "lines": true,
           "fill": 3,
           "linewidth": 3,
-          "points": true,
+          "points": false,
           "pointradius": 5,
           "bars": false,
           "stack": false,
@@ -879,7 +1471,7 @@
           "lines": true,
           "fill": 5,
           "linewidth": 3,
-          "points": true,
+          "points": false,
           "pointradius": 5,
           "bars": false,
           "stack": false,
@@ -952,7 +1544,7 @@
           "lines": true,
           "fill": 5,
           "linewidth": 3,
-          "points": true,
+          "points": false,
           "pointradius": 5,
           "bars": false,
           "stack": false,
@@ -977,10 +1569,369 @@
       "notice": false
     },
     {
+      "title": "Kippo",
+      "height": "150px",
+      "editable": true,
+      "collapse": false,
+      "collapsable": true,
+      "panels": [
+        {
+          "span": 6,
+          "editable": true,
+          "type": "histogram",
+          "loadingEditor": false,
+          "mode": "count",
+          "time_field": "@timestamp",
+          "value_field": null,
+          "x-axis": true,
+          "y-axis": true,
+          "scale": 1,
+          "y_format": "none",
+          "grid": {
+            "max": null,
+            "min": 0
+          },
+          "queries": {
+            "mode": "selected",
+            "ids": [
+              9
+            ]
+          },
+          "annotate": {
+            "enable": false,
+            "query": "*",
+            "size": 20,
+            "field": "_type",
+            "sort": [
+              "_score",
+              "desc"
+            ]
+          },
+          "auto_int": false,
+          "resolution": 100,
+          "interval": "1h",
+          "intervals": [
+            "auto",
+            "1s",
+            "1m",
+            "5m",
+            "10m",
+            "30m",
+            "1h",
+            "3h",
+            "12h",
+            "1d",
+            "1w",
+            "1y"
+          ],
+          "lines": true,
+          "fill": 0,
+          "linewidth": 3,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "spyable": true,
+          "zoomlinks": true,
+          "options": true,
+          "legend": true,
+          "show_query": true,
+          "interactive": true,
+          "legend_counts": true,
+          "timezone": "browser",
+          "percentage": false,
+          "zerofill": true,
+          "derivative": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "query_as_alias": true
+          },
+          "title": "Kippo Connections"
+        },
+        {
+          "span": 6,
+          "editable": true,
+          "type": "histogram",
+          "loadingEditor": false,
+          "mode": "count",
+          "time_field": "@timestamp",
+          "value_field": null,
+          "x-axis": true,
+          "y-axis": true,
+          "scale": 1,
+          "y_format": "none",
+          "grid": {
+            "max": null,
+            "min": 0
+          },
+          "queries": {
+            "mode": "selected",
+            "ids": [
+              10
+            ]
+          },
+          "annotate": {
+            "enable": false,
+            "query": "*",
+            "size": 20,
+            "field": "_type",
+            "sort": [
+              "_score",
+              "desc"
+            ]
+          },
+          "auto_int": false,
+          "resolution": 100,
+          "interval": "1h",
+          "intervals": [
+            "auto",
+            "1s",
+            "1m",
+            "5m",
+            "10m",
+            "30m",
+            "1h",
+            "3h",
+            "12h",
+            "1d",
+            "1w",
+            "1y"
+          ],
+          "lines": true,
+          "fill": 0,
+          "linewidth": 3,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "spyable": true,
+          "zoomlinks": true,
+          "options": true,
+          "legend": true,
+          "show_query": true,
+          "interactive": true,
+          "legend_counts": true,
+          "timezone": "browser",
+          "percentage": false,
+          "zerofill": true,
+          "derivative": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "query_as_alias": true
+          },
+          "title": "Kippo Credential probes"
+        }
+      ],
+      "notice": false
+    },
+    {
+      "title": "Kippo 2",
+      "height": "350px",
+      "editable": true,
+      "collapse": false,
+      "collapsable": true,
+      "panels": [
+        {
+          "error": false,
+          "span": 7,
+          "editable": true,
+          "type": "bettermap",
+          "loadingEditor": false,
+          "field": "geoip.coordinates",
+          "size": 1000,
+          "spyable": true,
+          "tooltip": "geoip.ip",
+          "queries": {
+            "mode": "selected",
+            "ids": [
+              9
+            ]
+          },
+          "title": "Kippo connections"
+        },
+        {
+          "error": false,
+          "span": 3,
+          "editable": true,
+          "type": "terms",
+          "loadingEditor": false,
+          "field": "kippo-password",
+          "exclude": [],
+          "missing": false,
+          "other": true,
+          "size": 10,
+          "order": "count",
+          "style": {
+            "font-size": "8pt"
+          },
+          "donut": false,
+          "tilt": false,
+          "labels": true,
+          "arrangement": "horizontal",
+          "chart": "table",
+          "counter_pos": "above",
+          "spyable": true,
+          "queries": {
+            "mode": "selected",
+            "ids": [
+              10
+            ]
+          },
+          "tmode": "terms",
+          "tstat": "total",
+          "valuefield": "",
+          "title": "Kippo passwords"
+        },
+        {
+          "error": false,
+          "span": 2,
+          "editable": true,
+          "type": "terms",
+          "loadingEditor": false,
+          "field": "kippo-authmethod",
+          "exclude": [],
+          "missing": false,
+          "other": true,
+          "size": 10,
+          "order": "count",
+          "style": {
+            "font-size": "8pt"
+          },
+          "donut": false,
+          "tilt": false,
+          "labels": true,
+          "arrangement": "horizontal",
+          "chart": "pie",
+          "counter_pos": "none",
+          "spyable": true,
+          "queries": {
+            "mode": "selected",
+            "ids": [
+              11
+            ]
+          },
+          "tmode": "terms",
+          "tstat": "total",
+          "valuefield": "",
+          "title": "Kippo Authmethod"
+        }
+      ],
+      "notice": false
+    },
+    {
+      "title": "Kippo Sources",
+      "height": "300px",
+      "editable": true,
+      "collapse": false,
+      "collapsable": true,
+      "panels": [
+        {
+          "error": false,
+          "span": 4,
+          "editable": true,
+          "type": "terms",
+          "loadingEditor": false,
+          "field": "geoip.full.raw",
+          "exclude": [],
+          "missing": false,
+          "other": true,
+          "size": 10,
+          "order": "count",
+          "style": {
+            "font-size": "10pt"
+          },
+          "donut": false,
+          "tilt": false,
+          "labels": true,
+          "arrangement": "horizontal",
+          "chart": "table",
+          "counter_pos": "above",
+          "spyable": true,
+          "queries": {
+            "mode": "selected",
+            "ids": [
+              8
+            ]
+          },
+          "tmode": "terms",
+          "tstat": "total",
+          "valuefield": "",
+          "title": "Kippo Top ASN"
+        },
+        {
+          "error": false,
+          "span": 3,
+          "editable": true,
+          "type": "terms",
+          "loadingEditor": false,
+          "field": "srcip",
+          "exclude": [],
+          "missing": false,
+          "other": true,
+          "size": 12,
+          "order": "count",
+          "style": {
+            "font-size": "10pt"
+          },
+          "donut": false,
+          "tilt": false,
+          "labels": true,
+          "arrangement": "horizontal",
+          "chart": "table",
+          "counter_pos": "above",
+          "spyable": true,
+          "queries": {
+            "mode": "selected",
+            "ids": [
+              8
+            ]
+          },
+          "tmode": "terms",
+          "tstat": "total",
+          "valuefield": "",
+          "title": "Kippo Top IPs"
+        },
+        {
+          "error": false,
+          "span": 5,
+          "editable": true,
+          "type": "terms",
+          "loadingEditor": false,
+          "field": "geoip.full.raw",
+          "exclude": [],
+          "missing": false,
+          "other": true,
+          "size": 10,
+          "order": "count",
+          "style": {
+            "font-size": "10pt"
+          },
+          "donut": false,
+          "tilt": false,
+          "labels": true,
+          "arrangement": "horizontal",
+          "chart": "bar",
+          "counter_pos": "above",
+          "spyable": true,
+          "queries": {
+            "mode": "selected",
+            "ids": [
+              8
+            ]
+          },
+          "tmode": "terms",
+          "tstat": "total",
+          "valuefield": "",
+          "title": "Kippo Top ASN"
+        }
+      ],
+      "notice": false
+    },
+    {
       "title": "Glastopf / Conpot",
       "height": "200px",
       "editable": true,
-      "collapse": true,
+      "collapse": false,
       "collapsable": true,
       "panels": [
         {
@@ -1007,9 +1958,7 @@
           "spyable": true,
           "queries": {
             "mode": "selected",
-            "ids": [
-              5
-            ]
+            "ids": []
           },
           "tmode": "terms",
           "tstat": "total",
@@ -1053,328 +2002,10 @@
       "notice": false
     },
     {
-      "title": "Maps",
-      "height": "450px",
-      "editable": true,
-      "collapse": true,
-      "collapsable": true,
-      "panels": [
-        {
-          "error": false,
-          "span": 9,
-          "editable": true,
-          "type": "bettermap",
-          "loadingEditor": false,
-          "field": "geoip.coordinates",
-          "size": 1000,
-          "spyable": true,
-          "tooltip": "geoip.ip",
-          "queries": {
-            "mode": "all",
-            "ids": [
-              0,
-              1,
-              2,
-              3,
-              4,
-              5,
-              6
-            ]
-          },
-          "title": "map"
-        },
-        {
-          "error": false,
-          "span": 3,
-          "editable": true,
-          "type": "terms",
-          "loadingEditor": false,
-          "field": "geoip.country_code2",
-          "exclude": [],
-          "missing": false,
-          "other": false,
-          "size": 13,
-          "order": "count",
-          "style": {
-            "font-size": "10pt"
-          },
-          "donut": false,
-          "tilt": false,
-          "labels": true,
-          "arrangement": "horizontal",
-          "chart": "table",
-          "counter_pos": "above",
-          "spyable": true,
-          "queries": {
-            "mode": "all",
-            "ids": [
-              0,
-              1,
-              2,
-              3,
-              4,
-              5,
-              6
-            ]
-          },
-          "tmode": "terms",
-          "tstat": "total",
-          "valuefield": "",
-          "title": "Top Countries"
-        },
-        {
-          "error": false,
-          "span": 4,
-          "editable": true,
-          "type": "map",
-          "loadingEditor": false,
-          "map": "world",
-          "colors": [
-            "#A0E2E2",
-            "#265656"
-          ],
-          "size": 250,
-          "exclude": [],
-          "spyable": true,
-          "queries": {
-            "mode": "all",
-            "ids": [
-              0,
-              1,
-              2,
-              3,
-              4,
-              5,
-              6
-            ]
-          },
-          "field": "geoip.country_code2",
-          "title": "World"
-        },
-        {
-          "error": false,
-          "span": 4,
-          "editable": true,
-          "type": "map",
-          "loadingEditor": false,
-          "map": "usa",
-          "colors": [
-            "#A0E2E2",
-            "#265656"
-          ],
-          "size": 250,
-          "exclude": [],
-          "spyable": true,
-          "queries": {
-            "mode": "all",
-            "ids": [
-              0,
-              1,
-              2,
-              3,
-              4,
-              5,
-              6
-            ]
-          },
-          "field": "geoip.country_code2",
-          "title": "US"
-        },
-        {
-          "error": false,
-          "span": 4,
-          "editable": true,
-          "type": "map",
-          "loadingEditor": false,
-          "map": "europe",
-          "colors": [
-            "#A0E2E2",
-            "#265656"
-          ],
-          "size": 250,
-          "exclude": [],
-          "spyable": true,
-          "queries": {
-            "mode": "all",
-            "ids": [
-              0,
-              1,
-              2,
-              3,
-              4,
-              5,
-              6
-            ]
-          },
-          "field": "geoip.country_code2",
-          "title": "Europe"
-        }
-      ],
-      "notice": false
-    },
-    {
-      "title": "Network",
-      "height": "200px",
-      "editable": true,
-      "collapse": true,
-      "collapsable": true,
-      "panels": [
-        {
-          "height": "200px",
-          "chart": "pie",
-          "field": "dstport",
-          "span": 4,
-          "type": "terms",
-          "title": "Destination Ports",
-          "exclude": [],
-          "missing": false,
-          "other": false,
-          "size": 10,
-          "order": "count",
-          "style": {
-            "font-size": "10pt"
-          },
-          "donut": false,
-          "tilt": false,
-          "labels": true,
-          "arrangement": "horizontal",
-          "counter_pos": "above",
-          "spyable": true,
-          "queries": {
-            "mode": "all",
-            "ids": [
-              0,
-              1,
-              2,
-              3,
-              4,
-              5,
-              6
-            ]
-          },
-          "tmode": "terms",
-          "tstat": "total",
-          "valuefield": ""
-        },
-        {
-          "height": "200px",
-          "chart": "table",
-          "field": "dstport",
-          "span": 3,
-          "type": "terms",
-          "title": "Destination Ports",
-          "exclude": [],
-          "missing": false,
-          "other": false,
-          "size": 10,
-          "order": "count",
-          "style": {
-            "font-size": "10pt"
-          },
-          "donut": false,
-          "tilt": false,
-          "labels": true,
-          "arrangement": "horizontal",
-          "counter_pos": "above",
-          "spyable": true,
-          "queries": {
-            "mode": "all",
-            "ids": [
-              0,
-              1,
-              2,
-              3,
-              4,
-              5,
-              6
-            ]
-          },
-          "tmode": "terms",
-          "tstat": "total",
-          "valuefield": ""
-        },
-        {
-          "height": "200px",
-          "chart": "table",
-          "field": "protocol",
-          "span": 2,
-          "type": "terms",
-          "title": "Protocol",
-          "exclude": [],
-          "missing": false,
-          "other": false,
-          "size": 10,
-          "order": "count",
-          "style": {
-            "font-size": "10pt"
-          },
-          "donut": false,
-          "tilt": false,
-          "labels": true,
-          "arrangement": "horizontal",
-          "counter_pos": "above",
-          "spyable": true,
-          "queries": {
-            "mode": "all",
-            "ids": [
-              0,
-              1,
-              2,
-              3,
-              4,
-              5,
-              6
-            ]
-          },
-          "tmode": "terms",
-          "tstat": "total",
-          "valuefield": ""
-        },
-        {
-          "height": "200px",
-          "chart": "table",
-          "field": "srcport",
-          "span": 3,
-          "type": "terms",
-          "title": "Source Ports",
-          "exclude": [],
-          "missing": false,
-          "other": false,
-          "size": 10,
-          "order": "count",
-          "style": {
-            "font-size": "10pt"
-          },
-          "donut": false,
-          "tilt": false,
-          "labels": true,
-          "arrangement": "horizontal",
-          "counter_pos": "above",
-          "spyable": true,
-          "queries": {
-            "mode": "all",
-            "ids": [
-              0,
-              1,
-              2,
-              3,
-              4,
-              5,
-              6
-            ]
-          },
-          "tmode": "terms",
-          "tstat": "total",
-          "valuefield": ""
-        }
-      ],
-      "notice": false
-    },
-    {
       "title": "Events",
       "height": "650px",
       "editable": true,
-      "collapse": true,
+      "collapse": false,
       "collapsable": true,
       "panels": [
         {
@@ -1411,7 +2042,12 @@
               3,
               4,
               5,
-              6
+              6,
+              7,
+              8,
+              9,
+              10,
+              11
             ]
           },
           "field_list": true,
@@ -1459,16 +2095,16 @@
       "query": "*",
       "pinned": true,
       "history": [
-        "honeypot:\"dionaea\"",
-        "honeypot:\"conpot\"",
-        "honeypot:\"glastopf\"",
+        "kippo-type:\"authentication-method\"",
+        "kippo-type:\"credentials\"",
+        "kippo-type:\"connection\"",
+        "type:\"kippo\"",
+        "type:\"dionaea\"",
+        "type:\"conpot\"",
+        "type:\"glastopf\"",
         "connection_protocol:\"smbd\"",
         "connection_protocol:\"httpd\"",
-        "connection_protocol:\"mssqld\"",
-        "connection_protocol:\"mysqld\"",
-        "basetype:\"honeypot\"",
-        "connection_protocol:\"pcap\"",
-        "*"
+        "connection_protocol:\"mssqld\""
       ],
       "remember": 10,
       "enable": true
