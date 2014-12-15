@@ -19,7 +19,8 @@ import sqlite3
 
 SQLITE_DB = "/var/lib/dionaea/logsql.sqlite"
 LAST_CONNECTION_FILE = "/tmp/dionaea-singlelogline.id"
-LOGFILE="/var/log/dionaea/dionaea-single.log"
+LOGFILE="/var/log/elk-import/dionaea-single.log"
+IGNORE_SRC=[ "127.0.0.1" ]
 
 connection_start = 0
 connection_id = 0
@@ -51,6 +52,8 @@ if __name__ == "__main__":
             src_port = row[11]
             hostname = row[10]
             connection_id = row[0]
+            if src_ip in IGNORE_SRC:
+                continue            
             if LOGFILE:
                 f_log.write("%s : %-10s \t %-10s \t %s \t %s \t %s \t %s \t %s \t %s\n" % (timestamp, connection_type, connection_protocol, protocol, src_ip, src_port, dst_ip, dst_port, hostname))
             else:

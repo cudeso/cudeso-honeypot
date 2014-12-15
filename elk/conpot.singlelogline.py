@@ -23,7 +23,7 @@ import MySQLdb
 DSTIP="192.168.218.140"
 
 LAST_CONNECTION_FILE = "/tmp/conpot-singlelogline.id"
-LOGFILE="/var/log/conpot-single.log"
+LOGFILE="/var/log/elk-import/conpot-single.log"
 
 SQLITE_DB="/opt/myhoneypot/logs/conpot.db"
 

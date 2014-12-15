@@ -1,0 +1,15 @@
+# Logrotate script for ELK imports
+#
+#   run with "logrotate <path>/elk/elk-import.logrotate"
+su root syslog
+
+/var/log/elk-import/conpot-single.log /var/log/elk-import/glastopf-single.log /var/log/elk-import/dionaea-single.log {
+        daily
+        notifempty
+        rotate 3
+        missingok
+        compress
+        delaycompress
+        create 660 root root
+        dateext
+}

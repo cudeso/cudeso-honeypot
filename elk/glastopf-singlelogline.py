@@ -25,7 +25,7 @@ DSTPORT="80"
 PROTOCOL="tcp"
 
 LAST_CONNECTION_FILE = "/tmp/glastopf-singlelogline.id"
-LOGFILE="/var/log/glastopf-single.log"
+LOGFILE="/var/log/elk-import/glastopf-single.log"
 
 SQLITE_DB="/opt/myhoneypot/db/glastopf.db"
 
