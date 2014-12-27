@@ -1,0 +1,14 @@
+;
+; Bind configuration file for sinkhole
+;
+$TTL    10
+@       IN      SOA     localhost. root.localhost. (
+                              1         ; Serial
+                             10         ; Refresh
+                             10         ; Retry
+                             10         ; Expire
+                             10 )       ; Negative Cache TTL
+;
+
+		IN	NS	localhost	
+*		IN	A	127.0.0.1
