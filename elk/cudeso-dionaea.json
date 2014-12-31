@@ -1,5 +1,5 @@
 {
-  "title": "Honeypot",
+  "title": "Honeypot_withdns",
   "services": {
     "query": {
       "list": {
@@ -110,6 +110,15 @@
           "type": "lucene",
           "enable": true,
           "query": "kippo-type:\"authentication-method\""
+        },
+        "12": {
+          "id": 12,
+          "color": "#890F02",
+          "alias": "DNS",
+          "pin": true,
+          "type": "lucene",
+          "enable": true,
+          "query": "type:\"dnshpot\""
         }
       },
       "ids": [
@@ -124,7 +133,8 @@
         8,
         9,
         10,
-        11
+        11,
+        12
       ]
     },
     "filter": {
@@ -176,7 +186,8 @@
               5,
               6,
               7,
-              8
+              8,
+              12
             ]
           },
           "annotate": {
@@ -259,7 +270,8 @@
               5,
               6,
               7,
-              8
+              8,
+              12
             ]
           },
           "tmode": "terms",
@@ -296,7 +308,8 @@
               5,
               6,
               7,
-              8
+              8,
+              12
             ]
           },
           "tmode": "terms",
@@ -327,7 +340,8 @@
               5,
               6,
               7,
-              8
+              8,
+              12
             ]
           },
           "annotate": {
@@ -626,7 +640,8 @@
               5,
               6,
               7,
-              8
+              8,
+              12
             ]
           },
           "style": {
@@ -680,7 +695,8 @@
               8,
               9,
               10,
-              11
+              11,
+              12
             ]
           },
           "tmode": "terms",
@@ -724,7 +740,8 @@
               8,
               9,
               10,
-              11
+              11,
+              12
             ]
           },
           "tmode": "terms",
@@ -768,7 +785,8 @@
               8,
               9,
               10,
-              11
+              11,
+              12
             ]
           },
           "tmode": "terms",
@@ -810,7 +828,8 @@
               8,
               9,
               10,
-              11
+              11,
+              12
             ]
           },
           "title": "Map (limited to 100000 points)"
@@ -851,7 +870,8 @@
               8,
               9,
               10,
-              11
+              11,
+              12
             ]
           },
           "tmode": "terms",
@@ -895,7 +915,8 @@
               8,
               9,
               10,
-              11
+              11,
+              12
             ]
           },
           "tmode": "terms",
@@ -941,7 +962,8 @@
               8,
               9,
               10,
-              11
+              11,
+              12
             ]
           },
           "field": "geoip.country_code2",
@@ -975,7 +997,8 @@
               8,
               9,
               10,
-              11
+              11,
+              12
             ]
           },
           "field": "geoip.country_code2",
@@ -1009,7 +1032,8 @@
               8,
               9,
               10,
-              11
+              11,
+              12
             ]
           },
           "field": "geoip.country_code2",
@@ -1060,7 +1084,8 @@
               8,
               9,
               10,
-              11
+              11,
+              12
             ]
           },
           "tmode": "terms",
@@ -1102,7 +1127,8 @@
               8,
               9,
               10,
-              11
+              11,
+              12
             ]
           },
           "tmode": "terms",
@@ -1144,7 +1170,8 @@
               8,
               9,
               10,
-              11
+              11,
+              12
             ]
           },
           "tmode": "terms",
@@ -1186,12 +1213,228 @@
               8,
               9,
               10,
-              11
+              11,
+              12
             ]
           },
           "tmode": "terms",
           "tstat": "total",
           "valuefield": ""
+        }
+      ],
+      "notice": false
+    },
+    {
+      "title": "DNS",
+      "height": "200px",
+      "editable": true,
+      "collapse": false,
+      "collapsable": true,
+      "panels": [
+        {
+          "span": 6,
+          "editable": true,
+          "type": "histogram",
+          "loadingEditor": false,
+          "mode": "count",
+          "time_field": "@timestamp",
+          "value_field": null,
+          "x-axis": true,
+          "y-axis": true,
+          "scale": 1,
+          "y_format": "none",
+          "grid": {
+            "max": null,
+            "min": 0
+          },
+          "queries": {
+            "mode": "selected",
+            "ids": [
+              12
+            ]
+          },
+          "annotate": {
+            "enable": false,
+            "query": "*",
+            "size": 20,
+            "field": "_type",
+            "sort": [
+              "_score",
+              "desc"
+            ]
+          },
+          "auto_int": false,
+          "resolution": 100,
+          "interval": "1h",
+          "intervals": [
+            "auto",
+            "1s",
+            "1m",
+            "5m",
+            "10m",
+            "30m",
+            "1h",
+            "3h",
+            "12h",
+            "1d",
+            "1w",
+            "1y"
+          ],
+          "lines": true,
+          "fill": 0,
+          "linewidth": 3,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "spyable": true,
+          "zoomlinks": true,
+          "options": true,
+          "legend": true,
+          "show_query": true,
+          "interactive": true,
+          "legend_counts": true,
+          "timezone": "browser",
+          "percentage": false,
+          "zerofill": true,
+          "derivative": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "query_as_alias": true
+          },
+          "title": "DNS Queries"
+        },
+        {
+          "error": false,
+          "span": 3,
+          "editable": true,
+          "type": "terms",
+          "loadingEditor": false,
+          "field": "querytype",
+          "exclude": [],
+          "missing": true,
+          "other": true,
+          "size": 10,
+          "order": "count",
+          "style": {
+            "font-size": "10pt"
+          },
+          "donut": false,
+          "tilt": false,
+          "labels": true,
+          "arrangement": "horizontal",
+          "chart": "table",
+          "counter_pos": "above",
+          "spyable": true,
+          "queries": {
+            "mode": "selected",
+            "ids": [
+              12
+            ]
+          },
+          "tmode": "terms",
+          "tstat": "total",
+          "valuefield": "",
+          "title": "DNS Query type"
+        },
+        {
+          "error": false,
+          "span": 3,
+          "editable": true,
+          "type": "terms",
+          "loadingEditor": false,
+          "field": "querytype2",
+          "exclude": [],
+          "missing": true,
+          "other": true,
+          "size": 10,
+          "order": "count",
+          "style": {
+            "font-size": "10pt"
+          },
+          "donut": false,
+          "tilt": false,
+          "labels": true,
+          "arrangement": "horizontal",
+          "chart": "table",
+          "counter_pos": "above",
+          "spyable": true,
+          "queries": {
+            "mode": "selected",
+            "ids": [
+              12
+            ]
+          },
+          "tmode": "terms",
+          "tstat": "total",
+          "valuefield": "",
+          "title": "DNS Query type 2"
+        },
+        {
+          "error": false,
+          "span": 6,
+          "editable": true,
+          "type": "terms",
+          "loadingEditor": false,
+          "field": "geoip.full.raw",
+          "exclude": [],
+          "missing": false,
+          "other": true,
+          "size": 10,
+          "order": "count",
+          "style": {
+            "font-size": "10pt"
+          },
+          "donut": false,
+          "tilt": false,
+          "labels": true,
+          "arrangement": "horizontal",
+          "chart": "table",
+          "counter_pos": "above",
+          "spyable": true,
+          "queries": {
+            "mode": "selected",
+            "ids": [
+              12
+            ]
+          },
+          "tmode": "terms",
+          "tstat": "total",
+          "valuefield": "",
+          "title": "DNS Top ASN"
+        },
+        {
+          "error": false,
+          "span": 6,
+          "editable": true,
+          "type": "terms",
+          "loadingEditor": false,
+          "field": "hostname",
+          "exclude": [],
+          "missing": true,
+          "other": true,
+          "size": 10,
+          "order": "count",
+          "style": {
+            "font-size": "10pt"
+          },
+          "donut": false,
+          "tilt": false,
+          "labels": true,
+          "arrangement": "horizontal",
+          "chart": "table",
+          "counter_pos": "above",
+          "spyable": true,
+          "queries": {
+            "mode": "selected",
+            "ids": [
+              12
+            ]
+          },
+          "tmode": "terms",
+          "tstat": "total",
+          "valuefield": "",
+          "title": "DNS Query value"
         }
       ],
       "notice": false
@@ -2049,7 +2292,8 @@
               8,
               9,
               10,
-              11
+              11,
+              12
             ]
           },
           "field_list": true,
@@ -2097,6 +2341,7 @@
       "query": "*",
       "pinned": true,
       "history": [
+        "type:\"dnshpot\"",
         "kippo-type:\"authentication-method\"",
         "kippo-type:\"credentials\"",
         "kippo-type:\"connection\"",
@@ -2105,8 +2350,7 @@
         "type:\"conpot\"",
         "type:\"glastopf\"",
         "connection_protocol:\"smbd\"",
-        "connection_protocol:\"httpd\"",
-        "connection_protocol:\"mssqld\""
+        "connection_protocol:\"httpd\""
       ],
       "remember": 10,
       "enable": true

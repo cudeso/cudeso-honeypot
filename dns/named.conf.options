@@ -5,9 +5,9 @@ options {
 	// 	8.8.8.8;	
 	// };
 
-	dnssec-validation auto;
+	// dnssec-validation auto;
 	recursion no;
-        allow-transfer { none; };
+  allow-transfer { none; };
 
 	auth-nxdomain no;    # conform to RFC1035
 	// listen-on-v6 { any; };
