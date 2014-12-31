@@ -1,0 +1,66 @@
+curl -XGET 'http://127.0.0.1:9200/_all/_search?pretty' -d '{
+  "facets": {
+    "terms": {
+      "terms": {
+        "field": "type",
+        "size": 10,
+        "order": "count",
+        "exclude": []
+      },
+      "facet_filter": {
+        "fquery": {
+          "query": {
+            "filtered": {
+              "query": {
+                "bool": {
+                  "should": [
+                    {
+                      "query_string": {
+                        "query": "basetype:\"honeypot\""
+                      }
+                    },
+                    {
+                      "query_string": {
+                        "query": "type:\"glastopf\""
+                      }
+                    },
+                    {
+                      "query_string": {
+                        "query": "type:\"conpot\""
+                      }
+                    },
+                    {
+                      "query_string": {
+                        "query": "type:\"dionaea\""
+                      }
+                    },
+                    {
+                      "query_string": {
+                        "query": "type:\"kippo\""
+                      }
+                    }
+                  ]
+                }
+              },
+              "filter": {
+                "bool": {
+                  "must": [
+                    {
+                      "range": {
+                        "@timestamp": {
+                          "from": 1417440142530,
+                          "to": 1420032142531
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "size": 0
+}'
