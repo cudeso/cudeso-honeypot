@@ -53,7 +53,9 @@ if __name__ == "__main__":
             hostname = row[10]
             connection_id = row[0]
             if src_ip in IGNORE_SRC:
-                continue            
+                continue
+            if connection_protocol == "p0fconnection":
+                continue                
             if LOGFILE:
                 f_log.write("%s : %-10s \t %-10s \t %s \t %s \t %s \t %s \t %s \t %s\n" % (timestamp, connection_type, connection_protocol, protocol, src_ip, src_port, dst_ip, dst_port, hostname))
             else:
