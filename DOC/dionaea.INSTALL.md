@@ -34,7 +34,7 @@ sudo apt-get install dionaea-phibo
 
 P0f can be started from the command line with 
 ```
-sudo p0f -i any -u root -Q /tmp/p0f.sock -q -l
+sudo p0f -i any -u root -Q /var/run/p0f.sock -q -l
 ```
 
 Make sure that the socket (-Q) is also accessible by dionaea. Alternatively you can use the init-script in p0f/p0f_init.sh
@@ -57,6 +57,7 @@ sudo apt-get install gnuplot
 # Configuration
 
 The configuration files are in /etc/dionaea/ and the data files are in /var/lib/dionaea/
+Use the config file in this repository **dionaea/dionaea.conf**
 
 ## Enable P0f
 

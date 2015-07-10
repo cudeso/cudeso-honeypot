@@ -8,7 +8,7 @@
         create 660 root root
         dateext
         postrotate
-                supervisorctl restart dionaea
+                /etc/init.d/dionaea-phibo restart
         endscript
 }
 

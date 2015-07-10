@@ -30,11 +30,11 @@ Create a mysql database and user for kippo. Generate the tables from **doc/sql/m
 
 # Configuration
 
-The kippo configuration is stored in kippo.cfg.
+The kippo configuration is stored in kippo.cfg. You can copy the config file from **kippo/kippo.cfg**
 
 ## Mysql
 
-Enable the mysql configuration by changing the section [database_mysql]. Set the database, hostname, username and password.
+Enable the mysql configuration by changing the section [database_mysql]. Set the database, hostname, username and password. I don't use mysql in this setup.
 
 ## Kippo hostname
 
