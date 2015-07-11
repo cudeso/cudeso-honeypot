@@ -13,7 +13,12 @@ See http://www.vanimpe.eu/2014/12/13/using-elk-dashboard-honeypots/ for a detail
 
 # Dionaea
 
-Use the patch from dionaea/logsql.py to keep track of changes in the sqlite database
+Use the patch from dionaea/logsql.py to keep track of changes in the sqlite database.
+Make sure you alter the sqlite database
+
+```
+sqlite> alter table connections add column id integer;
+```
 
 # Tips
 
