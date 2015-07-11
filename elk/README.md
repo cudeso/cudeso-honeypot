@@ -11,6 +11,10 @@ See http://www.vanimpe.eu/2014/12/13/using-elk-dashboard-honeypots/ for a detail
 ![Kippo](hp5.png)
 ![Network sources](hp6.png)
 
+# Dionaea
+
+Use the patch from dionaea/logsql.py to keep track of changes in the sqlite database
+
 # Tips
 
 * Use "geoip.full.raw" to prevent split string data 
