@@ -39,6 +39,10 @@ sudo p0f -i any -u root -Q /var/run/p0f.sock -q -l
 
 Make sure that the socket (-Q) is also accessible by dionaea. Alternatively you can use the init-script in p0f/p0f_init.sh
 
+```
+chgrp dionaea /var/run/p0f.sock 
+```
+
 ## Start dionaea
 
 ```
@@ -75,6 +79,17 @@ Enable proper logging in the logging = {} section.
 ## Logrotating
 
 Make sure that you rotate your logs. You can use the **dionaea.logrotate** script for this (make sure you define the correct path).
+
+## SQLITE database scheme
+
+By default dionaea logs to a sqlite file /var/lib/dionaea/logsql.sqlite.
+
+The sqlite logstash module needs an ID-column to keep track of the data.
+The patch **logsql.py** adds an ID field and keeps its updated with every dionaea connection.
+
+- Remove the SQLITE database /var/lib/dionaea/logsql.sqlite.
+- Apply the patch
+- Restart dionaea
 
 ## Set dionaea to start at boot
 

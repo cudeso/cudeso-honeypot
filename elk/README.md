@@ -24,3 +24,15 @@ sqlite> alter table connections add column id integer;
 
 * Use "geoip.full.raw" to prevent split string data 
 * curl -XDELETE 'http://localhost:9200/logstash-*'
+
+# ELK basic Setup
+
+mkdir /data
+cd /data
+wget https://download.elastic.co/elasticsearch/elasticsearch/elasticsearch-1.7.1.tar.gz
+tar zxvf elasticsearch-1.7.1.tar.gz
+ln -s elasticsearch-1.7.1 elasticsearch
+wget https://download.elastic.co/logstash/logstash/logstash-1.5.3.tar.gz
+tar zxvf logstash-1.5.3.tar.gz
+ln -s logstash-1.5.3 logstash
+

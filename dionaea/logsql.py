@@ -59,6 +59,7 @@ class logsqlhandler(ihandler):
 		self.cursor.execute("""CREATE TABLE IF NOT EXISTS 
 			connections	(
 				connection INTEGER PRIMARY KEY,
+				id INTEGER,
 				connection_type TEXT, 
 				connection_transport TEXT, 
 				connection_protocol TEXT, 
@@ -584,7 +585,9 @@ class logsqlhandler(ihandler):
 					(attackid, i ) )
 			self.dbh.commit()
 
-		self.cursor.execute("UPDATE connections SET id = ? WHERE connection = ?", (attackid, attackid) )
+		# Set the ID table ready for Logstash
+        self.cursor.execute("UPDATE connections SET id = ? WHERE connection = ?", (attackid, attackid) )
+
 		return attackid
 
 
@@ -788,18 +791,18 @@ class logsqlhandler(ihandler):
 		f = open(icd.path, mode='r')
 		j = json.load(f)
 
-		if j['response_code'] == 1: # file was known to virustotal
+		if j['result'] == 1: # file was known to virustotal
 			permalink = j['permalink']
-			date = j['scan_date']
+			date = j['report'][0]
 			self.cursor.execute("INSERT INTO virustotals (virustotal_md5_hash, virustotal_permalink, virustotal_timestamp) VALUES (?,?,strftime('%s',?))", 
 				(md5, permalink, date))
 			self.dbh.commit()
 
 			virustotal = self.cursor.lastrowid
 
-			scans = j['scans']
-			for av, val in scans.items():
-				res = val['result']
+			scans = j['report'][1]
+			for av in scans:
+				res = scans[av]
 				# not detected = '' -> NULL
 				if res == '':
 					res = None
